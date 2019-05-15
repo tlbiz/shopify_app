@@ -81,6 +81,8 @@ module ShopifyApp
         query_params[:shop] ||= referer_sanitized_shop_name
       end
 
+      query_params[:return_to] = params[:return_to] || session[:return_to]
+
       query_params[:top_level] = true if top_level
       query_params
     end
@@ -129,7 +131,7 @@ module ShopifyApp
     end
 
     def return_address
-      session.delete(:return_to) || ShopifyApp.configuration.root_url
+      session[:return_to] || params[:return_to] || ShopifyApp.configuration.root_url
     end
   end
 end

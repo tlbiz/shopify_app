@@ -20,10 +20,10 @@ module ShopifyApp
 
       render(:enable_cookies, layout: false, locals: {
         does_not_have_storage_access_url: top_level_interaction_path(
-          shop: sanitized_shop_name
+          shop: sanitized_shop_name, return_to: params[:return_to]
         ),
         has_storage_access_url: login_url(top_level: true),
-        app_home_url: granted_storage_access_path(shop: sanitized_shop_name),
+        app_home_url: granted_storage_access_path(shop: sanitized_shop_name, return_to: params[:return_to]),
         current_shopify_domain: current_shopify_domain,
       })
     end
@@ -97,6 +97,7 @@ module ShopifyApp
     end
 
     def authenticate_in_context
+      session[:return_to] = params[:return_to] if params[:return_to].present?
       redirect_to "#{main_app.root_path}auth/shopify"
     end
 
@@ -121,10 +122,11 @@ module ShopifyApp
     def redirect_to_request_storage_access
       render :request_storage_access, layout: false, locals: {
         does_not_have_storage_access_url: top_level_interaction_path(
-          shop: sanitized_shop_name
+          shop: sanitized_shop_name,
+          return_to: params[:return_to],
         ),
         has_storage_access_url: login_url(top_level: true),
-        app_home_url: granted_storage_access_path(shop: sanitized_shop_name),
+        app_home_url: granted_storage_access_path(shop: sanitized_shop_name, return_to: params[:return_to]),
         current_shopify_domain: current_shopify_domain
       }
     end
