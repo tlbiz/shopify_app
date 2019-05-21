@@ -54,7 +54,7 @@ module ShopifyApp
       return render_invalid_shop_error unless sanitized_shop_name.present?
       session['shopify.omniauth_params'] = { shop: sanitized_shop_name }
 
-      if user_agent_can_partition_cookies
+      if user_agent_can_partition_cookies && !user_agent_is_mobile
         authenticate_with_partitioning
       else
         authenticate_normally
