@@ -1,5 +1,5 @@
 ShopifyApp::Engine.routes.draw do
-  controller :sessions do
+  scope module: :sessions, path: '' do
     get 'login' => :new, :as => :login
     post 'login' => :create, :as => :authenticate
     get 'enable_cookies' => :enable_cookies, :as => :enable_cookies
@@ -12,7 +12,7 @@ ShopifyApp::Engine.routes.draw do
     get 'logout' => :destroy, :as => :logout
   end
 
-  controller :callback do
+  scope module: :callback, path: '' do
     get 'auth/shopify/callback' => :callback
   end
 
