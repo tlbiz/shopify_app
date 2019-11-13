@@ -2,14 +2,7 @@
 
 class MarketingActivitiesController < HmacVerificationController
   def preload_form_data
-    form_data = {
-      "form_data": {
-        "budget": {
-          "currency": 'USD',
-        },
-      }
-    }
-    render(json: form_data, status: :ok)
+    render(json: {}, status: :ok)
   end
 
   def update
