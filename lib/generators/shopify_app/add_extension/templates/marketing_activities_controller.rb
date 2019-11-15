@@ -56,15 +56,4 @@ class MarketingActivitiesController < HmacVerificationController
 
     render(json: {}, status: :ok)
   end
-
-  private
-
-  def shop
-    Shop.find_by(shopify_domain: params[:shopify_domain])
-  end
-
-  def marketing_activity_id
-    return unless params[:marketing_activity_id].present?
-
-  end
 end
