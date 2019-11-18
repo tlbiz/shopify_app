@@ -6,6 +6,12 @@ class AddExtensionGeneratorTest < Rails::Generators::TestCase
   destination File.expand_path("../tmp", File.dirname(__FILE__))
   arguments %w(-t marketing_activities)
 
+  test "fails when invalid extension type is provided" do
+    run_generator %w(-t invalid_type)
+
+    assert_no_file "app/controllers/hmac_verification_controller.rb"
+  end
+
   test "adds the respective extension controller" do
     provide_existing_routes_file
 

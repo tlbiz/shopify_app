@@ -13,7 +13,7 @@ class HmacVerificationController < ApplicationController
     secret = ShopifyApp.configuration.secret
     digest = OpenSSL::Digest.new('sha256')
 
-    calculated_hmac = Base64.strict_encode64(OpenSSL::HMAC.digest(digest, secret, request_body))
-    head(:unauthorized) unless calculated_hmac == hmac_header
+    expected_hmac = Base64.strict_encode64(OpenSSL::HMAC.digest(digest, secret, request_body))
+    head(:unauthorized) unless ActiveSupport::SecurityUtils.secure_compare(expected_hmac, hmac_header)
   end
 end
