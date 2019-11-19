@@ -22,7 +22,7 @@ class MarketingActivitiesController < HmacVerificationController
   end
 
   def preview
-    placeholder_img = "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png"
+    placeholder_img = "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_small.png"
     preview_response = {
       "desktop": {
         "preview_url": placeholder_img,

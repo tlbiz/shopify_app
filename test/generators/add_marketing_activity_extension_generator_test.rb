@@ -1,18 +1,11 @@
 require 'test_helper'
-require 'generators/shopify_app/add_extension/add_extension_generator'
+require 'generators/shopify_app/add_marketing_activity_extension/add_marketing_activity_extension_generator'
 
-class AddExtensionGeneratorTest < Rails::Generators::TestCase
-  tests ShopifyApp::Generators::AddExtensionGenerator
+class AddMarketingActivityExtensionGeneratorTest < Rails::Generators::TestCase
+  tests ShopifyApp::Generators::AddMarketingActivityExtensionGenerator
   destination File.expand_path("../tmp", File.dirname(__FILE__))
-  arguments %w(-t marketing_activities)
 
-  test "fails when invalid extension type is provided" do
-    run_generator %w(-t invalid_type)
-
-    assert_no_file "app/controllers/hmac_verification_controller.rb"
-  end
-
-  test "adds the respective extension controller" do
+  test "adds the extension controller" do
     provide_existing_routes_file
 
     run_generator
