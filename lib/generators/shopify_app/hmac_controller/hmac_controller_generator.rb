@@ -3,6 +3,7 @@ require 'rails/generators/base'
 module ShopifyApp
   module Generators
     class HmacControllerGenerator < Rails::Generators::Base
+      hide!
       source_root File.expand_path('../templates', __FILE__)
 
       def create_hmac_verification_controller

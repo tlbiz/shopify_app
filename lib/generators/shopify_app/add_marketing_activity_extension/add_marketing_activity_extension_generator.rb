@@ -24,7 +24,8 @@ module ShopifyApp
 
       def routes
         <<~EOS
-          \nresource :marketing_activities, only: [:create, :update] do
+
+          resource :marketing_activities, only: [:create, :update] do
             patch :resume
             patch :pause
             patch :delete
