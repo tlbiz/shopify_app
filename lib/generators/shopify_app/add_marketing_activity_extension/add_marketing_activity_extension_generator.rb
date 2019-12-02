@@ -6,8 +6,6 @@ module ShopifyApp
       source_root File.expand_path('../templates', __FILE__)
 
       def generate_app_extension
-        generate "shopify_app:hmac_controller"
-
         template "marketing_activities_controller.rb", "app/controllers/marketing_activities_controller.rb"
         generate_routes
       end

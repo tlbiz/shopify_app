@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class HmacVerificationController < ApplicationController
-  protect_from_forgery with: :null_session
-
+class ExtensionVerificationController < ActionController::Base
   before_action :verify_request
 
   private

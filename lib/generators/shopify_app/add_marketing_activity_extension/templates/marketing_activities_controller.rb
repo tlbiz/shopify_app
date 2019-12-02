@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
-class MarketingActivitiesController < HmacVerificationController
+class MarketingActivitiesController < ExtensionVerificationController
   def preload_form_data
-    render(json: {}, status: :ok)
+    preload_data = {
+      "form_data": {
+        "budget": {
+          "currency": "USD",
+        }
+      }
+    }
+    render(json: preload_data, status: :ok)
   end
 
   def update
